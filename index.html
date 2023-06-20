@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <section class="buton-wp">
+            <div class="row_1">
+                <ul id="action">
+                    <li>
+                        <label for="btn-width">Width:</label>
+                        <input type="range" id="btn-width" min="0" max="200" value="70" step="5">
+                    </li>
+                    <li>
+                        <label for="btn-height">Height:</label>
+                        <input type="range" id="btn-height" min="20" max="200" value="40" step="5">
+                    </li>
+                    <li>
+                        <label for="btn-border-radius">Border Radius:</label>
+                        <input type="range" id="btn-border-radius" min="0" max="50" value="8" step="1">
+                    </li>
+                    <li>
+                        <label for="btn-font-size">Font Size:</label>
+                        <input type="range" id="btn-font-size" min="0" max="100" value="16" step="1">
+                    </li>
+                    <li>
+                        <label for="btn-color">Background Color:</label>
+                        <input type="color" id="btn-color" value="#1639c5">
+                    </li>
+                    <li>
+                        <label for="btn-font-color">Font Color:</label>
+                        <input type="color" id="btn-font-color" value="#eee2e2">
+                    </li>
+                    <li>
+                        <label for="btn-font-size">Outline:</label>
+                        <input type="range" id="btn-font-size" min="0" max="100" value="14" step="1">
+                    </li>
+                </ul>
+                <main id="view">
+                    <button class="btn-view">Filter</button>
+                </main>
+            </div>
+            <pre id="style">
+            </pre>
+        </section>
+    </div>
+
+
+    <script>
+        var inputItem = document.querySelectorAll('input');
+        var btnView = document.querySelector('.btn-view');
+
+        const demo = () => {
+            var btnWidth = document.getElementById('btn-width').value + 'px';
+            var btnHeight = document.getElementById('btn-height').value + 'px';
+            var btnColor = document.getElementById('btn-color').value;
+            var btnBorderRadius = document.getElementById('btn-border-radius').value + 'px';
+            var btnFontSize = document.getElementById('btn-font-size').value + 'px';
+            var btnFontColor = document.getElementById('btn-font-color').value;
+
+            var generatedCSS = 'background-color: ' + btnColor + ';';
+            generatedCSS += 'width: ' + btnWidth + '; ';
+            generatedCSS += 'height: ' + btnHeight + '; ';
+            generatedCSS += 'border-radius: ' + btnBorderRadius + '; ';
+            generatedCSS += 'font-size: ' + btnFontSize + '; ';
+            generatedCSS += 'color: ' + btnFontColor + ';';
+            generatedCSS += 'outline: ' + "none" + ';';
+            generatedCSS += 'border: ' + "none" + ';'
+
+
+            var generatedCSSView = "";
+            generatedCSSView = 'background-color: ' + btnColor + ';' + "<br/>";
+            generatedCSSView += '                    width: ' + btnWidth + '; ' + "<br/>";
+            generatedCSSView += '                    height: ' + btnHeight + '; ' + "<br/>";
+            generatedCSSView += '                    border-radius: ' + btnBorderRadius + '; ' + "<br/>";
+            generatedCSSView += '                    font-size: ' + btnFontSize + '; ' + "<br/>";
+            generatedCSSView += '                    background-color: ' + btnColor + ' ; ' + "<br/>";
+            generatedCSSView += '                    color: ' + btnFontColor + ';' + "<br/>";
+            generatedCSSView += '                    outline: ' + "none" + ';' + "<br/>";
+            generatedCSSView += '                    border: ' + "none" + ';';
+
+            btnView.style = generatedCSS;
+
+            document.getElementById('style').innerHTML = `
+                button {
+                    ${generatedCSSView}
+                }`;
+        }
+
+        demo();
+        inputItem.forEach((item) => {
+            item.addEventListener('input', demo)
+        })
+    </script>
+</body>
+
+</html>
